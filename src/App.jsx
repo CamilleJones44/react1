@@ -1,48 +1,48 @@
-import { useReducer } from 'react';
+import React from 'react';
+import styled from 'styled-components';
 
-const initialState = {
-  loading: false,
-  error: null,
-  fact: null,
-};
 
-function factReducer(state, action) {
-  switch (action.type) {
-    case 'FETCH_START':
-      return { loading: true, error: null, fact: null };
-    case 'FETCH_SUCCESS':
-      return { loading: false, error: null, fact: action.payload };
-    case 'FETCH_ERROR':
-      return { loading: false, error: action.payload, fact: null };
-    default:
-      return state;
-  }
-}
+const QuoteBoxWrapper = styled.div`
 
-function App() {
-  const [state, dispatch] = useReducer(factReducer, initialState);
+  background: #ffff;
+  padding: 20px;
+  
+  border-radius: 12px;
+  
+  max-width: 400px;
+  margin: 20px auto;
+`;
 
-  const getFact = () => {
-    dispatch({ type: 'FETCH_START' });
+const QuoteText = styled.p`
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+`;
 
-    fetch("https://catfact.ninja/fact")
-      .then(res => res.json())
-      .then(data => dispatch({ type: 'FETCH_SUCCESS', payload: data.fact }))
-      .catch(err =>
-        dispatch({ type: 'FETCH_ERROR', payload: err.message })
-      );
-  };
+const QuoteAuthor = styled.p`
+  margin-top: 10px;
+  font-size: 1rem;
+  
+  color: #555;
+  text-align: right;
+`;
 
+function QuoteBox() {
   return (
-    <div>
-      <h1>Cat Fact Generator</h1>
-      <button onClick={getFact}>Get Cat Fact</button>
-
-      {state.loading && <p>Loading...</p>}
-      {state.fact && <p>{state.fact}</p>}
-      {state.error && <p style={{ color: "red" }}>{state.error}</p>}
-    </div>
+    
+    <QuoteBoxWrapper>
+      
+      <QuoteText>
+        
+        "The only limit to our realization of tomorrow is our doubts of today."
+        
+      </QuoteText>
+      
+      <QuoteAuthor>- Franklin D. Roosevelt</QuoteAuthor>
+      
+    </QuoteBoxWrapper>
   );
 }
 
-export default App;
+export default QuoteBox;
+
