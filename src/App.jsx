@@ -5,11 +5,11 @@ import styled from 'styled-components';
 const QuoteBoxWrapper = styled.div`
 
   background: #ffff;
-  padding: 20px;
+  padding: 25px;
   
   border-radius: 12px;
   
-  max-width: 400px;
+  max-width: 300px;
   margin: 20px auto;
 `;
 
@@ -20,7 +20,7 @@ const QuoteText = styled.p`
 `;
 
 const QuoteAuthor = styled.p`
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 1rem;
   
   color: #555;
